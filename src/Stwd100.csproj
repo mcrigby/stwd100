@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>CutilloRigby.Device.STWD100</AssemblyName>
+    <RootNamespace>CutilloRigby.Device.STWD100</RootNamespace>
+    <Authors>Martin Cutillo-Rigby</Authors>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <PackageId>CutilloRigby.Device.STWD100</PackageId>
+    <Product>CutilloRigby.Device.STWD100</Product>
+    <Version>1.0.0</Version>
+    <Description>L3G4200D Watchdog Timer Circuit</Description>
+    <OutputType>Library</OutputType>
+    <StartupObject />
+    <IsPackable>true</IsPackable>
+    <LangVersion>10.0</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CutilloRigby.Device" Version="1.0.4" />
+    <PackageReference Include="System.Device.Gpio" Version="2.2.0" />
+    <PackageReference Include="UnitsNet" Version="4.0.0" />
+  </ItemGroup>
+
+</Project>
