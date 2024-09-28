@@ -26,13 +26,20 @@ public sealed class STWD100
 
         _gpioController.OpenPin(_wdiPin, PinMode.Output, PinValue.Low);
         _gpioController.OpenPin(_wdoPin, PinMode.InputPullUp, PinValue.High);
-        _gpioController.RegisterCallbackForPinValueChangedEvent(_wdoPin, PinEventTypes.Falling, (s, e) => timeoutToken.Cancel());
+        _gpioController.RegisterCallbackForPinValueChangedEvent(_wdoPin, PinEventTypes.Falling, (s, e) => 
+        {
+            Log("STWD100 Watchdog Timeout.");
+            timeoutToken.Cancel();
+        });
 
         _timer = new Timer(async (state) => 
         {
             if (AssertInput)
+            {
+                Log("STWD Asserting Watchdog Signal");
                 _gpioController.Write(wdiPin, PinValue.High);
-            await Task.Delay(1);
+            }
+            await Task.Delay(2);
             _gpioController.Write(wdiPin, PinValue.Low);
         }, null, _pollInterval, _pollInterval);
     }
@@ -43,4 +50,6 @@ public sealed class STWD100
 
     public Duration TWD { get; }
     public Duration TPW { get; }
+
+    public Action<string> Log = (s) => { };
 }
